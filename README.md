@@ -5,9 +5,9 @@ Program your [GoPiGo](https://github.com/DexterInd/GoPiGo) in JavaScript.
 ## About
 
 The GoPiGo is a robotics platform made by Dexter Industries. It uses I2C to
-communicate between the Pi and a custom board (heavily inspired by the Arduino,
-rather than use the Pi's GPIO pins. For this reason, traditional NodeBots tools
-like
+communicate between the Pi and a custom board (heavily inspired by the
+Arduino), rather than use the Pi's GPIO pins. For this reason, traditional
+NodeBots tools like
 [Johnny-Five](https://github.com/rwaldron/johnny-five)/[Raspi-IO](https://github.com/bryan-m-hughes/raspi-io/)
 are not helpful.
 
@@ -26,17 +26,25 @@ The package is licensed the same as DI's: CC BY-SA 3.0.
 
 ## Install
 
+If you don't already have Node installed on your Pi, [these
+instructions](http://weworkweplay.com/play/raspberry-pi-nodejs/) seem as good
+as any. Then:
+
 ````
 npm install gopigo
 sudo chmod o+rw /dev/i2c*
 ````
 
-It may take some time to build the dependencies. Then make the i2c device writable (otherwise you'll get "TypeError: Failed to set address").
+It may take some time to build the dependencies. Then make the i2c device
+writable (otherwise you'll get "TypeError: Failed to set address").
+
 ## Troubleshooting
 
-You should only attempt to `npm install gopigo` on the Pi itself. This will install
-[node-i2c](https://github.com/kelly/node-i2c). Most of the steps listed in its
-README have already been done to your GoPiGo-ready Pi. One that hasn't is listed as part of the install instructions above. If you have further issues with i2c, consult the node-i2c README.
+You should only attempt to `npm install gopigo` on the Pi itself. This will
+install [node-i2c](https://github.com/kelly/node-i2c). Most of the steps listed
+in its README have already been done to your GoPiGo-ready Pi. One that hasn't
+is listed as part of the install instructions above. If you have further issues
+with i2c, consult the node-i2c README.
 
 Sometimes issuing multiple commands over the bus (particularly LEDs) causes
 intermittent failures. I've had success using `setTimeout(func, 0)` in these
