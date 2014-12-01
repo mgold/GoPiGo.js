@@ -10,8 +10,18 @@ i2c = require('i2c')
 # This is the address for the GoPiGo
 address = 0x08
 
-# DO THIS MANUALLY: `ls /devi2c*` and see what device your Pi has
-bus = new i2c(address, {device: '/dev/i2c-1'});
+# Determine which i2c device you have
+fs = require("fs")
+if fs.existsSync("/dev/i2c-0")
+    device = "/dev/i2c-0"
+else if fs.existsSync("/dev/i2c-1")
+    device = "/dev/i2c-1"
+else
+    console.log "ERROR: GoPiGo could not determine your i2c device!"
+    exit 1
+
+# This is our i2c object
+bus = new i2c(address, {device: device});
 
 #GoPiGo Commands
 fwd_cmd				=[119]		#Move forward with PID
