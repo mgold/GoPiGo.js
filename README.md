@@ -18,7 +18,9 @@ translation of that Python library into CoffeeScript. (The syntactic similarity
 is striking.) For convenience, the compiled JavaScript file is also included.
 
 The API is virtually identical, with a few minor changes noted in the source
-code. If you have questions about a particular function, consult DI's
+code. Note that this means the library is synchronous, which is okay
+considering the underlying I2C driver is synchronous too. If you have questions
+about a particular function, consult DI's
 [docs](http://www.dexterindustries.com/GoPiGo/learning/python-programming-for-the-raspberry-pi-gopigo/)
 or the CoffeeScript source.
 
@@ -32,19 +34,25 @@ as any. Then:
 
 ````
 npm install gopigo
-sudo chmod o+rw /dev/i2c*
 ````
 
-It may take some time to build the dependencies. Then make the i2c device
-writable (otherwise you'll get "TypeError: Failed to set address").
+It may take some time to build the dependencies. Read the next section while
+you're waiting.
 
 ## Troubleshooting
 
+If you get "TypeError: Failed to set address", add the following to
+`/etc/rc.local/` above the `exit` command, and then execute it with `sudo`:
+
+````
+chmod o+rw /dev/i2c*
+````
+
 You should only attempt to `npm install gopigo` on the Pi itself. This will
 install [node-i2c](https://github.com/kelly/node-i2c). Most of the steps listed
-in its README have already been done to your GoPiGo-ready Pi. One that hasn't
-is listed as part of the install instructions above. If you have further issues
-with i2c, consult the node-i2c README.
+in its README have already been done to your GoPiGo-ready Pi, and the one that
+hasn't I just mentioned above. If you have further issues with i2c, consult the
+node-i2c README.
 
 Sometimes issuing multiple commands over the bus (particularly LEDs) causes
 intermittent failures. I've had success using `setTimeout(func, 0)` in these
