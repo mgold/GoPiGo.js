@@ -24,16 +24,23 @@ or the CoffeeScript source.
 
 The package is licensed the same as DI's: CC BY-SA 3.0.
 
+## Install
+
+````
+npm install gopigo
+sudo chmod o+rw /dev/i2c*
+````
+
+It may take some time to build the dependencies. Then make the i2c device writable (otherwise you'll get "TypeError: Failed to set address").
 ## Troubleshooting
 
 You should only attempt to `npm install gopigo` on the Pi itself. This will install
 [node-i2c](https://github.com/kelly/node-i2c). Most of the steps listed in its
-README have already been done to your GoPiGo-ready Pi, but if you have issues
-with I2C you should verify that.
+README have already been done to your GoPiGo-ready Pi. One that hasn't is listed as part of the install instructions above. If you have further issues with i2c, consult the node-i2c README.
 
 Sometimes issuing multiple commands over the bus (particularly LEDs) causes
 intermittent failures. I've had success using `setTimeout(func, 0)` in these
 cases.
 
-If you encounter any other serious problems, please open an issue or send a
-pull request!
+If you encounter any other problems, please open an issue or send a pull
+request!
