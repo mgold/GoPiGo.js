@@ -1,0 +1,19 @@
+{
+  "name": "gopigo",
+  "version": "0.1.0",
+  "description": "JS library for the GoPiGo",
+  "main": "gopigo.coffee",
+  "repository": "https://github.com/mgold/GoPiGo.js",
+  "dependencies": {
+    "i2c": "~0.1.6",
+    "sleep": "~1.1.8"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.8.0"
+  },
+  "keywords": [
+    "robot", "raspberry pi", "gopigo"
+  ],
+  "author": "Max Goldstein",
+  "license": "CC BY-SA 3.0"
+}
